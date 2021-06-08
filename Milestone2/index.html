@@ -15,11 +15,12 @@
         <button @click="cerca()">Cerca</button>
 
         <div class="container">
-            <h2 v-if="movies.length > 0">Film:</h2>
+            <h2 v-if="cercato">Film:</h2>
+            <div v-if="cercato && movies.length == 0">Nessun risultato!</div>
             <div class="card" v-for="movie in movies">
 
                 {{movie.title}}
-                {{movie.original_title}}
+                <span v-if="movie.title != movie.original_title">{{movie.original_title}}</span>
                 <img v-if="movie.original_language != ''" :src="'https://www.countryflags.io/' + movie.original_language + '/flat/64.png'" :alt="movie.original_language">
                 <!-- {{movie.original_language}} -->
                 {{movie.vote_average}}
@@ -29,11 +30,12 @@
         </div>
 
         <div class="container">
-            <h2 v-if="serieTVs.length > 0">Serie TV:</h2>
+            <h2 v-if="cercato">Serie TV:</h2>
+            <div v-if="cercato && serieTVs.length == 0">Nessun risultato!</div>
             <div class="card" v-for="serieTV in serieTVs">
 
                 {{serieTV.name}}
-                {{serieTV.original_name}}
+                <span v-if="serieTV.title != serieTV.original_title">{{serieTV.original_name}}</span>
                 <img v-if="serieTV.original_language != ''" :src="'https://www.countryflags.io/' + serieTV.original_language + '/flat/64.png'" :alt="serieTV.original_language">
                 <!-- {{serieTV.original_language}} -->
                 {{serieTV.vote_average}}

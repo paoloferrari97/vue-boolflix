@@ -5,10 +5,13 @@ const app = new Vue({
         input: "",
         movies: [],
         urlSerieTV: "",
-        serieTVs: []
+        serieTVs: [],
+        cercato: false
     },
     methods: {
         cerca() {
+            this.cercato = true;
+
             /* axios x movies */
             this.url = "https://api.themoviedb.org/3/search/movie?api_key=601ef4a8959c32c43648a3337f0ccbfd&query=";
             this.url = this.url + this.input;
@@ -25,6 +28,8 @@ const app = new Vue({
                         this.movies[i].original_language = 'jp';
                     } else if (this.movies[i].original_language == 'hi') {
                         this.movies[i].original_language = 'in';
+                    } else if (this.movies[i].original_language == 'cs') {
+                        this.movies[i].original_language = 'cz';
                     }
                 }
             })
