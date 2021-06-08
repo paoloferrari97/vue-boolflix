@@ -15,13 +15,28 @@
         <button @click="cerca()">Cerca</button>
 
         <div class="container">
-
+            <h2>Film:</h2>
             <div class="card" v-for="movie in movies">
 
                 {{movie.title}}
                 {{movie.original_title}}
-                {{movie.original_language}}
+                <img :src="'https://www.countryflags.io/' + movie.original_language + '/flat/64.png'" :alt="movie.original_language">
+                <!-- {{movie.original_language}} -->
                 {{movie.vote_average}}
+
+            </div>
+
+        </div>
+
+        <div class="container">
+            <h2>Serie TV:</h2>
+            <div class="card" v-for="serieTV in serieTVs">
+
+                {{serieTV.name}}
+                {{serieTV.original_name}}
+                <img :src="'https://www.countryflags.io/' + serieTV.original_language + '/flat/64.png'" :alt="serieTV.original_language">
+                <!-- {{serieTV.original_language}} -->
+                {{serieTV.vote_average}}
 
             </div>
 
