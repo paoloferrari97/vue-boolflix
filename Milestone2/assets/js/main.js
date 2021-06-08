@@ -9,6 +9,7 @@ const app = new Vue({
     },
     methods: {
         cerca() {
+            /* axios x movies */
             this.url = "https://api.themoviedb.org/3/search/movie?api_key=601ef4a8959c32c43648a3337f0ccbfd&query=";
             this.url = this.url + this.input;
             axios
@@ -32,7 +33,7 @@ const app = new Vue({
             });
             console.log(this.url);
 
-
+            /* axios x serie tv */
             this.urlSerieTV = "https://api.themoviedb.org/3/search/tv?api_key=601ef4a8959c32c43648a3337f0ccbfd&query=";
             this.urlSerieTV = this.urlSerieTV + this.input;
             axios

@@ -20,7 +20,7 @@
 
                 {{movie.title}}
                 {{movie.original_title}}
-                <img :src="'https://www.countryflags.io/' + movie.original_language + '/flat/64.png'" :alt="movie.original_language">
+                <img v-if="movie.original_language != ''" :src="'https://www.countryflags.io/' + movie.original_language + '/flat/64.png'" :alt="movie.original_language">
                 <!-- {{movie.original_language}} -->
                 {{movie.vote_average}}
 
@@ -34,7 +34,7 @@
 
                 {{serieTV.name}}
                 {{serieTV.original_name}}
-                <img :src="'https://www.countryflags.io/' + serieTV.original_language + '/flat/64.png'" :alt="serieTV.original_language">
+                <img v-if="serieTV.original_language != ''" :src="'https://www.countryflags.io/' + serieTV.original_language + '/flat/64.png'" :alt="serieTV.original_language">
                 <!-- {{serieTV.original_language}} -->
                 {{serieTV.vote_average}}
 
