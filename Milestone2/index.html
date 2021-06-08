@@ -15,7 +15,7 @@
         <button @click="cerca()">Cerca</button>
 
         <div class="container">
-            <h2>Film:</h2>
+            <h2 v-if="movies.length > 0">Film:</h2>
             <div class="card" v-for="movie in movies">
 
                 {{movie.title}}
@@ -29,7 +29,7 @@
         </div>
 
         <div class="container">
-            <h2>Serie TV:</h2>
+            <h2 v-if="serieTVs.length > 0">Serie TV:</h2>
             <div class="card" v-for="serieTV in serieTVs">
 
                 {{serieTV.name}}
