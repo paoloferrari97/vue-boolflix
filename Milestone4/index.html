@@ -12,44 +12,70 @@
 
     <div id="app">
 
-        <input type="text" v-model="input" placeholder="Cerca un film o una serie TV!">
-        <button @click="cerca()">Cerca</button>
+        <!-- header -->
+        <header>
 
-        <div class="container">
-            <h2 v-if="cercato">Film:</h2>
-            <div v-if="cercato && movies.length == 0">Nessun risultato!</div>
-            <div class="card" v-for="movie in movies">
+            <span>
+                <img src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" alt="Logo di Netflix">
+            </span>
 
-                <img v-if="movie.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + movie.poster_path">
-                {{movie.title}}
-                <span v-if="movie.title != movie.original_title">{{movie.original_title}}</span>
-                <img v-if="movie.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" :alt="movie.original_language">
-                <!-- {{movie.original_language}} -->
-                <!-- {{movie.vote_average}} -->
-                <i v-for="i in movie.vote_average" class="fas fa-star"></i>
-                <i v-for="i in (5 - movie.vote_average)" class="far fa-star"></i>
+            <span>
+                <div>Serie TV</div>
+                <div>Film</div>
+                <div>La mia lista</div>
+            </span>
+            
+            <span>
+                <input type="text" v-model="input" placeholder="Cerca un film o una serie TV!">
+                <button @click="cerca()">Cerca</button>
+                <!-- <span>Bambini</span>
+                <i class="fas fa-caret-down"></i> -->
+            </span>
+
+        </header>
+        <!-- /header -->
+
+        <!-- main -->
+        <main>
+
+            <div class="container">
+                <h2 v-if="cercato">Film:</h2>
+                <div v-if="cercato && movies.length == 0">Nessun risultato!</div>
+                <div class="card" v-for="movie in movies">
+
+                    <img v-if="movie.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + movie.poster_path">
+                    {{movie.title}}
+                    <span v-if="movie.title != movie.original_title">{{movie.original_title}}</span>
+                    <img v-if="movie.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" :alt="movie.original_language">
+                    <!-- {{movie.original_language}} -->
+                    <!-- {{movie.vote_average}} -->
+                    <i v-for="i in movie.vote_average" class="fas fa-star"></i>
+                    <i v-for="i in (5 - movie.vote_average)" class="far fa-star"></i>
+
+                </div>
 
             </div>
 
-        </div>
+            <div class="container">
+                <h2 v-if="cercato">Serie TV:</h2>
+                <div v-if="cercato && serieTVs.length == 0">Nessun risultato!</div>
+                <div class="card" v-for="serieTV in serieTVs">
 
-        <div class="container">
-            <h2 v-if="cercato">Serie TV:</h2>
-            <div v-if="cercato && serieTVs.length == 0">Nessun risultato!</div>
-            <div class="card" v-for="serieTV in serieTVs">
+                    <img v-if="serieTV.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + serieTV.poster_path">
+                    {{serieTV.name}}
+                    <span v-if="serieTV.title != serieTV.original_title">{{serieTV.original_name}}</span>
+                    <img v-if="serieTV.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + serieTV.original_language + '-100'" :alt="serieTV.original_language">
+                    <!-- {{serieTV.original_language}} -->
+                    <!-- {{serieTV.vote_average}} -->
+                    <i v-for="i in serieTV.vote_average" class="fas fa-star"></i>
+                    <i v-for="i in (5 - serieTV.vote_average)" class="far fa-star"></i>
 
-                <img v-if="serieTV.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + serieTV.poster_path">
-                {{serieTV.name}}
-                <span v-if="serieTV.title != serieTV.original_title">{{serieTV.original_name}}</span>
-                <img v-if="serieTV.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + serieTV.original_language + '-100'" :alt="serieTV.original_language">
-                <!-- {{serieTV.original_language}} -->
-                <!-- {{serieTV.vote_average}} -->
-                <i v-for="i in serieTV.vote_average" class="fas fa-star"></i>
-                <i v-for="i in (5 - serieTV.vote_average)" class="far fa-star"></i>
+                </div>
 
             </div>
 
-        </div>
+        </main>
+        <!-- /main -->
 
     </div>
 

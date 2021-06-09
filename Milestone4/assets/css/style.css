@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#app {
+  height: 100%;
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header > span {
+  display: flex;
+}
+
+header > span:first-child > img {
+  width: 150px;
+}
+
+header > span:first-child > div {
+  display: flex;
+  align-items: center;
+}
+
+header > span:nth-child(2) > div {
+  margin: 0 10px;
+}
