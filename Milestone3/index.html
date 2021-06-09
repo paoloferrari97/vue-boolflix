@@ -20,11 +20,12 @@
             <div v-if="cercato && movies.length == 0">Nessun risultato!</div>
             <div class="card" v-for="movie in movies">
 
+                <img v-if="movie.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + movie.poster_path">
                 {{movie.title}}
                 <span v-if="movie.title != movie.original_title">{{movie.original_title}}</span>
                 <img v-if="movie.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" :alt="movie.original_language">
                 <!-- {{movie.original_language}} -->
-                {{movie.vote_average}}
+                <!-- {{movie.vote_average}} -->
                 <i v-for="i in movie.vote_average" class="fas fa-star"></i>
                 <i v-for="i in (5 - movie.vote_average)" class="far fa-star"></i>
 
@@ -37,11 +38,12 @@
             <div v-if="cercato && serieTVs.length == 0">Nessun risultato!</div>
             <div class="card" v-for="serieTV in serieTVs">
 
+                <img v-if="serieTV.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + serieTV.poster_path">
                 {{serieTV.name}}
                 <span v-if="serieTV.title != serieTV.original_title">{{serieTV.original_name}}</span>
                 <img v-if="serieTV.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + serieTV.original_language + '-100'" :alt="serieTV.original_language">
                 <!-- {{serieTV.original_language}} -->
-                {{serieTV.vote_average}}
+                <!-- {{serieTV.vote_average}} -->
                 <i v-for="i in serieTV.vote_average" class="fas fa-star"></i>
                 <i v-for="i in (5 - serieTV.vote_average)" class="far fa-star"></i>
 
