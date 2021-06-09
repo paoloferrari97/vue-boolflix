@@ -51,6 +51,14 @@ const app = new Vue({
             .catch(e => {
                 console.log(e);    
             });
+        },
+        hover(indice) {
+            document.querySelector(`.loc${indice} > .scritte`).style.zIndex = "3";
+            document.querySelector(`.loc${indice} > img`).style.zIndex = "1";
+        },
+        bhover(indice) {
+            document.querySelector(`.loc${indice} > .scritte`).style.zIndex = "1";
+            document.querySelector(`.loc${indice} > img`).style.zIndex = "3";
         }
     },
     mounted() {

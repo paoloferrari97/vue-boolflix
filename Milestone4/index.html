@@ -40,7 +40,7 @@
 
             <div class="container" v-if="categoriaSelezionata == 'film'">
                 <div v-if="cercato && movies.length == 0">Nessun risultato!</div>
-                <div class="card" v-for="movie in movies">
+                <div class="card" v-for="(movie, index) in movies" :class="'loc' + index" @mouseover="hover(index)" @mouseleave="bhover(index)">
 
                     <img v-if="movie.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + movie.poster_path">
                     <div class="layover"></div>
@@ -66,7 +66,7 @@
 
             <div class="container" v-if="categoriaSelezionata == 'serietv'">
                 <div v-if="cercato && serieTVs.length == 0">Nessun risultato!</div>
-                <div class="card" v-for="serieTV in serieTVs">
+                <div class="card" v-for="(serieTV, index) in serieTVs" :class="'loc' + index" @mouseover="hover(index)" @mouseleave="bhover(index)">
 
                     <img v-if="serieTV.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + serieTV.poster_path">
                     <div class="layover"></div>
@@ -95,7 +95,7 @@
 
                 <h2>Serie TV:</h2>
                 <div v-if="miaLista.length == 0">Nessun risultato!</div>
-                <div class="card" v-for="elem in miaLista">
+                <div class="card" v-for="(elem, index) in miaLista" :class="'loc' + index" @mouseover="hover(index)" @mouseleave="bhover(index)">
 
                     <img v-if="elem.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + elem.poster_path">
                     <div class="layover"></div>
@@ -122,7 +122,7 @@
 
                 <h2>Film:</h2>
                 <div v-if="miaListaFilm.length == 0">Nessun risultato!</div>
-                <div class="card" v-for="elem in miaListaFilm">
+                <div class="card" v-for="(elem, index) in miaListaFilm" :class="'loc' + index" @mouseover="hover(index)" @mouseleave="bhover(index)">
 
                     <img v-if="elem.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + elem.poster_path">
                     <div class="layover"></div>
