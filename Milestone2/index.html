@@ -21,7 +21,7 @@
 
                 {{movie.title}}
                 <span v-if="movie.title != movie.original_title">{{movie.original_title}}</span>
-                <img v-if="movie.original_language != ''" :src="'https://www.countryflags.io/' + movie.original_language + '/flat/64.png'" :alt="movie.original_language">
+                <img v-if="movie.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" :alt="movie.original_language">
                 <!-- {{movie.original_language}} -->
                 {{movie.vote_average}}
 
@@ -36,7 +36,7 @@
 
                 {{serieTV.name}}
                 <span v-if="serieTV.title != serieTV.original_title">{{serieTV.original_name}}</span>
-                <img v-if="serieTV.original_language != ''" :src="'https://www.countryflags.io/' + serieTV.original_language + '/flat/64.png'" :alt="serieTV.original_language">
+                <img v-if="serieTV.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + serieTV.original_language + '-100'" :alt="serieTV.original_language">
                 <!-- {{serieTV.original_language}} -->
                 {{serieTV.vote_average}}
 

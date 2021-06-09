@@ -20,18 +20,6 @@ const app = new Vue({
             .then(resp => {
                 console.log(resp);
                 this.movies = resp.data.results;
-
-                for (let i = 0; i < this.movies.length; i++){
-                    if (this.movies[i].original_language == 'en') {
-                        this.movies[i].original_language = 'us';
-                    } else if (this.movies[i].original_language == 'ja') {
-                        this.movies[i].original_language = 'jp';
-                    } else if (this.movies[i].original_language == 'hi') {
-                        this.movies[i].original_language = 'in';
-                    } else if (this.movies[i].original_language == 'cs') {
-                        this.movies[i].original_language = 'cz';
-                    }
-                }
             })
             .catch(e => {
                 console.log(e);    
@@ -46,16 +34,6 @@ const app = new Vue({
             .then(resp => {
                 console.log(resp);
                 this.serieTVs = resp.data.results;
-
-                for (let i = 0; i < this.serieTVs.length; i++){
-                    if (this.serieTVs[i].original_language == 'en') {
-                        this.serieTVs[i].original_language = 'us';
-                    } else if (this.serieTVs[i].original_language == 'ja') {
-                        this.serieTVs[i].original_language = 'jp';
-                    } else if (this.serieTVs[i].original_language == 'hi') {
-                        this.serieTVs[i].original_language = 'in';
-                    }
-                }
             })
             .catch(e => {
                 console.log(e);    
