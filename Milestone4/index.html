@@ -43,7 +43,7 @@
                 <div class="card" v-for="movie in movies">
 
                     <img v-if="movie.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + movie.poster_path">
-                    
+                    <div class="layover"></div>
                     <div class="scritte">
                         <span><span style="font-weight: 800;">Titolo:</span> {{movie.title}}</span>
                         <span v-if="movie.title != movie.original_title"><span style="font-weight: 800;">Titolo originale:</span> {{movie.original_title}}</span>
@@ -69,7 +69,7 @@
                 <div class="card" v-for="serieTV in serieTVs">
 
                     <img v-if="serieTV.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + serieTV.poster_path">
-
+                    <div class="layover"></div>
                     <div class="scritte">
                         <span><span style="font-weight: 800;">Titolo:</span> {{serieTV.name}}</span>
                         <span v-if="serieTV.name != serieTV.original_name"><span style="font-weight: 800;">Titolo originale:</span> {{serieTV.original_name}}</span>
@@ -98,7 +98,7 @@
                 <div class="card" v-for="elem in miaLista">
 
                     <img v-if="elem.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + elem.poster_path">
-
+                    <div class="layover"></div>
                     <div class="scritte">
                         <span><span style="font-weight: 800;">Titolo:</span> {{elem.name}}</span>
                         <span v-if="elem.name != elem.original_name"><span style="font-weight: 800;">Titolo originale:</span> {{elem.original_name}}</span>
@@ -125,7 +125,7 @@
                 <div class="card" v-for="elem in miaListaFilm">
 
                     <img v-if="elem.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + elem.poster_path">
-                    
+                    <div class="layover"></div>
                     <div class="scritte">
                         <span><span style="font-weight: 800;">Titolo:</span> {{elem.title}}</span>
                         <span v-if="elem.title != elem.original_title"><span style="font-weight: 800;">Titolo originale:</span> {{elem.original_title}}</span>
