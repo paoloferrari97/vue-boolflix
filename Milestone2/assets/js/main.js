@@ -20,6 +20,11 @@ const app = new Vue({
             .then(resp => {
                 console.log(resp);
                 this.movies = resp.data.results;
+
+                for (let i = 0; i < this.movies.length; i++) {
+                    this.movies[i].vote_average = Math.round((this.movies[i].vote_average * 5) / 10);
+                    
+                }
             })
             .catch(e => {
                 console.log(e);    
@@ -34,6 +39,11 @@ const app = new Vue({
             .then(resp => {
                 console.log(resp);
                 this.serieTVs = resp.data.results;
+
+                for (let i = 0; i < this.serieTVs.length; i++) {
+                    this.serieTVs[i].vote_average = Math.round((this.serieTVs[i].vote_average * 5) / 10);
+                    
+                }
             })
             .catch(e => {
                 console.log(e);    
