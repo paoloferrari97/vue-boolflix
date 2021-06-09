@@ -25,6 +25,8 @@
                 <img v-if="movie.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" :alt="movie.original_language">
                 <!-- {{movie.original_language}} -->
                 {{movie.vote_average}}
+                <i v-for="i in movie.vote_average" class="fas fa-star"></i>
+                <i v-for="i in (5 - movie.vote_average)" class="far fa-star"></i>
 
             </div>
 
@@ -40,6 +42,8 @@
                 <img v-if="serieTV.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + serieTV.original_language + '-100'" :alt="serieTV.original_language">
                 <!-- {{serieTV.original_language}} -->
                 {{serieTV.vote_average}}
+                <i v-for="i in serieTV.vote_average" class="fas fa-star"></i>
+                <i v-for="i in (5 - serieTV.vote_average)" class="far fa-star"></i>
 
             </div>
 
