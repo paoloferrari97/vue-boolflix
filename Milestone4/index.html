@@ -20,9 +20,9 @@
             </span>
 
             <span>
-                <div @click="categoriaSelezionata = 'serietv'">Serie TV</div>
-                <div @click="categoriaSelezionata = 'film'">Film</div>
-                <div @click="categoriaSelezionata = 'mialista'">La mia lista</div>
+                <div @click="categoriaSelezionata = 'serietv'">Serie TV<hr v-if="categoriaSelezionata == 'serietv'"></div>
+                <div @click="categoriaSelezionata = 'film'">Film<hr v-if="categoriaSelezionata == 'film'"></div>
+                <div @click="categoriaSelezionata = 'mialista'">La mia lista<hr v-if="categoriaSelezionata == 'mialista'"></div>
             </span>
             
             <span>
@@ -39,54 +39,108 @@
         <main>
 
             <div class="container" v-if="categoriaSelezionata == 'film'">
-                <h2 v-if="cercato">Film:</h2>
                 <div v-if="cercato && movies.length == 0">Nessun risultato!</div>
                 <div class="card" v-for="movie in movies">
 
                     <img v-if="movie.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + movie.poster_path">
-                    {{movie.title}}
-                    <span v-if="movie.title != movie.original_title">{{movie.original_title}}</span>
-                    <img v-if="movie.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" :alt="movie.original_language">
-                    <!-- {{movie.original_language}} -->
-                    <!-- {{movie.vote_average}} -->
-                    <i v-for="i in movie.vote_average" class="fas fa-star"></i>
-                    <i v-for="i in (5 - movie.vote_average)" class="far fa-star"></i>
+                    
+                    <div class="scritte">
+                        <span><span style="font-weight: 800;">Titolo:</span> {{movie.title}}</span>
+                        <span v-if="movie.title != movie.original_title"><span style="font-weight: 800;">Titolo originale:</span> {{movie.original_title}}</span>
+                        <span><span style="font-weight: 800;">Lingua originale:</span> <img v-if="movie.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" :alt="movie.original_language"></span>
+                        <!-- {{movie.original_language}} -->
+                        <!-- {{movie.vote_average}} -->
+                        <span>
+                            <span style="font-weight: 800;">Voto:</span> 
+                            <i v-for="i in movie.vote_average" class="fas fa-star"></i>
+                            <i v-for="i in (5 - movie.vote_average)" class="far fa-star"></i>
+                        </span>
+                        <span>
+                            <span style="font-weight: 800;">Overview:</span> {{movie.overview}}
+                        </span>
+                    </div>
 
                 </div>
 
             </div>
 
             <div class="container" v-if="categoriaSelezionata == 'serietv'">
-                <h2 v-if="cercato">Serie TV:</h2>
                 <div v-if="cercato && serieTVs.length == 0">Nessun risultato!</div>
                 <div class="card" v-for="serieTV in serieTVs">
 
                     <img v-if="serieTV.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + serieTV.poster_path">
-                    {{serieTV.name}}
-                    <span v-if="serieTV.title != serieTV.original_title">{{serieTV.original_name}}</span>
-                    <img v-if="serieTV.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + serieTV.original_language + '-100'" :alt="serieTV.original_language">
-                    <!-- {{serieTV.original_language}} -->
-                    <!-- {{serieTV.vote_average}} -->
-                    <i v-for="i in serieTV.vote_average" class="fas fa-star"></i>
-                    <i v-for="i in (5 - serieTV.vote_average)" class="far fa-star"></i>
+
+                    <div class="scritte">
+                        <span><span style="font-weight: 800;">Titolo:</span> {{serieTV.name}}</span>
+                        <span v-if="serieTV.name != serieTV.original_name"><span style="font-weight: 800;">Titolo originale:</span> {{serieTV.original_name}}</span>
+                        <span><span style="font-weight: 800;">Lingua originale:</span> <img v-if="serieTV.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + serieTV.original_language + '-100'" :alt="serieTV.original_language"></span>
+                        <!-- {{serieTV.original_language}} -->
+                        <!-- {{serieTV.vote_average}} -->
+                        <span>
+                            <span style="font-weight: 800;">Voto:</span> 
+                            <i v-for="i in serieTV.vote_average" class="fas fa-star"></i>
+                            <i v-for="i in (5 - serieTV.vote_average)" class="far fa-star"></i>
+                        </span>
+                        <span>
+                            <span style="font-weight: 800;">Overview:</span> {{serieTV.overview}}
+                        </span>
+                    </div>
+                    
 
                 </div>
 
             </div>
 
             <div class="container" v-if="categoriaSelezionata == 'mialista'">
-                <h2 v-if="cercato">La mia lista:</h2>
-                <div v-if="cercato && miaLista.length == 0">Nessun risultato!</div>
+
+                <h2>Serie TV:</h2>
+                <div v-if="miaLista.length == 0">Nessun risultato!</div>
                 <div class="card" v-for="elem in miaLista">
 
                     <img v-if="elem.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + elem.poster_path">
-                    {{elem.name}}
-                    <span v-if="elem.title != elem.original_title">{{elem.original_name}}</span>
-                    <img v-if="elem.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + elem.original_language + '-100'" :alt="elem.original_language">
-                    <!-- {{elem.original_language}} -->
-                    <!-- {{elem.vote_average}} -->
-                    <i v-for="i in elem.vote_average" class="fas fa-star"></i>
-                    <i v-for="i in (5 - elem.vote_average)" class="far fa-star"></i>
+
+                    <div class="scritte">
+                        <span><span style="font-weight: 800;">Titolo:</span> {{elem.name}}</span>
+                        <span v-if="elem.name != elem.original_name"><span style="font-weight: 800;">Titolo originale:</span> {{elem.original_name}}</span>
+                        <span><span style="font-weight: 800;">Lingua originale:</span> <img v-if="elem.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + elem.original_language + '-100'" :alt="elem.original_language"></span>
+                        <!-- {{elem.original_language}} -->
+                        <!-- {{elem.vote_average}} -->
+                        <span>
+                            <span style="font-weight: 800;">Voto:</span> 
+                            <i v-for="i in elem.vote_average" class="fas fa-star"></i>
+                            <i v-for="i in (5 - elem.vote_average)" class="far fa-star"></i>
+                        </span>
+                        <span>
+                            <span style="font-weight: 800;">Overview:</span> {{elem.overview}}
+                        </span>
+                    </div>
+                    
+
+                </div>
+            </div>
+            <div class="container" v-if="categoriaSelezionata == 'mialista'">
+
+                <h2>Film:</h2>
+                <div v-if="miaListaFilm.length == 0">Nessun risultato!</div>
+                <div class="card" v-for="elem in miaListaFilm">
+
+                    <img v-if="elem.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + elem.poster_path">
+                    
+                    <div class="scritte">
+                        <span><span style="font-weight: 800;">Titolo:</span> {{elem.title}}</span>
+                        <span v-if="elem.title != elem.original_title"><span style="font-weight: 800;">Titolo originale:</span> {{elem.original_title}}</span>
+                        <span><span style="font-weight: 800;">Lingua originale:</span> <img v-if="elem.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + elem.original_language + '-100'" :alt="elem.original_language"></span>
+                        <!-- {{elem.original_language}} -->
+                        <!-- {{elem.vote_average}} -->
+                        <span>
+                            <span style="font-weight: 800;">Voto:</span> 
+                            <i v-for="i in elem.vote_average" class="fas fa-star"></i>
+                            <i v-for="i in (5 - elem.vote_average)" class="far fa-star"></i>
+                        </span>
+                        <span>
+                            <span style="font-weight: 800;">Overview:</span> {{elem.overview}}
+                        </span>
+                    </div>
 
                 </div>
 

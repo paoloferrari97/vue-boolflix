@@ -8,7 +8,8 @@ const app = new Vue({
         serieTVs: [],
         cercato: false,
         categoriaSelezionata: "serietv",
-        miaLista: []
+        miaLista: [],
+        miaListaFilm: []
     },
     methods: {
         cerca() {
