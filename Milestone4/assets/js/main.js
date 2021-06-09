@@ -6,7 +6,9 @@ const app = new Vue({
         movies: [],
         urlSerieTV: "",
         serieTVs: [],
-        cercato: false
+        cercato: false,
+        categoriaSelezionata: "serietv",
+        miaLista: []
     },
     methods: {
         cerca() {
