@@ -11,6 +11,7 @@
   min-height: 100vh;
   padding-left: 30px;
   padding-right: 30px;
+  font-family: "Open Sans", sans-serif;
 }
 
 header {
@@ -110,4 +111,14 @@ h2 {
 
 .titolo_due {
   margin-top: 50px;
+}
+
+input {
+  background-color: black;
+  outline: none;
+  border: 0;
+  border-bottom: 2px solid red;
+  color: white;
+  height: 30px;
+  font-size: 15px;
 }
