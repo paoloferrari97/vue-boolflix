@@ -62,6 +62,9 @@
                         <span v-if="movie.overview != null && movie.overview != ''">
                             <span style="font-weight: 800;">Overview:</span> {{movie.overview}}
                         </span>
+                        <span v-if="movie.actors">
+                            <span style="font-weight: 800;">Attori:</span><span> {{movie.actors}}</span>
+                        </span>
                     </div>
 
                 </div>
@@ -89,6 +92,9 @@
                         </span>
                         <span v-if="serieTV.overview != null && serieTV.overview != ''">
                             <span style="font-weight: 800;">Overview:</span> {{serieTV.overview}}
+                        </span>
+                        <span v-if="serieTV.actors">
+                            <span style="font-weight: 800;">Attori:</span><span> {{serieTV.actors}}</span>
                         </span>
                     </div>
                     
@@ -120,6 +126,9 @@
                         <span v-if="elem.overview != null && elem.overview != ''">
                             <span style="font-weight: 800;">Overview:</span> {{elem.overview}}
                         </span>
+                        <span v-if="elem.actors">
+                            <span style="font-weight: 800;">Attori:</span><span> {{elem.actors}}</span>
+                        </span>
                     </div>
                     
 
@@ -148,6 +157,9 @@
                         </span>
                         <span v-if="elem.overview != null && elem.overview != ''">
                             <span style="font-weight: 800;">Overview:</span> {{elem.overview}}
+                        </span>
+                        <span v-if="elem.actors">
+                            <span style="font-weight: 800;">Attori:</span><span> {{elem.actors}}</span>
                         </span>
                     </div>
 

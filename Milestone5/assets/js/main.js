@@ -9,7 +9,8 @@ const app = new Vue({
         cercato: false,
         categoriaSelezionata: "serietv",
         miaLista: [],
-        miaListaFilm: []
+        miaListaFilm: [],
+        generi: []
     },
     methods: {
         cerca() {
@@ -27,6 +28,19 @@ const app = new Vue({
                 for (let i = 0; i < this.movies.length; i++) {
                     this.movies[i].vote_average = Math.round((this.movies[i].vote_average * 5) / 10);
                     
+
+                    axios
+                    .get(`https://api.themoviedb.org/3/movie/${this.movies[i].id}/credits?api_key=601ef4a8959c32c43648a3337f0ccbfd`)
+                    .then(resp => {
+                        this.movies[i].actors = resp.data.cast[0].name;
+                        this.movies[i].actors = this.movies[i].actors + ", " + resp.data.cast[1].name;
+                        this.movies[i].actors = this.movies[i].actors + ", " + resp.data.cast[2].name;
+                        this.movies[i].actors = this.movies[i].actors + ", " + resp.data.cast[3].name;
+                        this.movies[i].actors = this.movies[i].actors + ", " + resp.data.cast[4].name;
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    })
                 }
             })
             .catch(e => {
@@ -46,6 +60,21 @@ const app = new Vue({
                 for (let i = 0; i < this.serieTVs.length; i++) {
                     this.serieTVs[i].vote_average = Math.round((this.serieTVs[i].vote_average * 5) / 10);
                     
+
+                    axios
+                    .get(`https://api.themoviedb.org/3/tv/${this.serieTVs[i].id}/credits?api_key=601ef4a8959c32c43648a3337f0ccbfd`)
+                    .then(resp => {
+                        console.log(resp.data.cast[0].name);
+                        this.serieTVs[i].actors = resp.data.cast[0].name;
+                        this.serieTVs[i].actors = this.serieTVs[i].actors + ", " + resp.data.cast[1].name;
+                        this.serieTVs[i].actors = this.serieTVs[i].actors + ", " + resp.data.cast[2].name;
+                        this.serieTVs[i].actors = this.serieTVs[i].actors + ", " + resp.data.cast[3].name;
+                        this.serieTVs[i].actors = this.serieTVs[i].actors + ", " + resp.data.cast[4].name;
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    })
+                    //sbagliato resp.data.cast.name??
                 }
             })
             .catch(e => {
@@ -82,6 +111,13 @@ const app = new Vue({
         }
     },
     mounted() {
-        
+        axios
+        .get("https://api.themoviedb.org/3/genre/movie/list?api_key=601ef4a8959c32c43648a3337f0ccbfd")
+        .then(resp => {
+            this.generi = resp.data.genres;
+        })
+        .catch(e => {
+            console.log(e);    
+        });
     }
 });
