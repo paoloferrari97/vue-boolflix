@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#app {
+  height: 100%;
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-family: "Open Sans", sans-serif;
+  padding-bottom: 50px;
+}
+
+header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+header > span {
+  display: flex;
+}
+
+header > span:first-child > img {
+  width: 150px;
+}
+
+header > span:first-child > div {
+  display: flex;
+  align-items: center;
+}
+
+header > span:nth-child(2) > div {
+  margin: 0 10px;
+}
+
+.card {
+  width: 250px;
+  height: 375px;
+  position: relative;
+  margin: 10px 5px;
+}
+
+.card > img {
+  width: 250px;
+  height: 375px;
+  position: relative;
+  z-index: 3;
+}
+
+.layover {
+  width: 250px;
+  height: 375px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.scritte {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  max-height: 375px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  max-height: 355px;
+  /* overflow: hidden; */
+  overflow-y: auto;
+  z-index: 1;
+}
+
+.scritte > span > img {
+  width: 20px;
+}
+
+.scritte > span > i {
+  color: gold;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* .container.list {
+  flex-wrap: nowrap;
+  overflow-y: auto;
+} */
+
+.fas.fa-plus,
+.fas.fa-check,
+.fas.fa-minus {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: red;
+  z-index: 4;
+  font-size: 20px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.titolo_due {
+  margin-top: 50px;
+}
+
+input {
+  background-color: black;
+  outline: none;
+  border: 0;
+  border-bottom: 2px solid red;
+  color: white;
+  height: 30px;
+  font-size: 15px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}
