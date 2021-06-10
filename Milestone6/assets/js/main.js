@@ -10,7 +10,8 @@ const app = new Vue({
         categoriaSelezionata: "serietv",
         miaLista: [],
         miaListaFilm: [],
-        generi: []
+        generi: [],
+        genere: "Tutti"
     },
     methods: {
         cerca() {
