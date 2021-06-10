@@ -98,7 +98,7 @@
             </div>
 
             <h2 v-if="categoriaSelezionata == 'mialista'">Serie TV:</h2>
-            <div class="container" v-if="categoriaSelezionata == 'mialista'">
+            <div class="container list" v-if="categoriaSelezionata == 'mialista'">
 
                 <div v-if="miaLista.length == 0">Nessun risultato!</div>
                 <div class="card" v-for="(elem, index) in miaLista" :class="'loc' + index" @mouseover="hover(index)" @mouseleave="bhover(index)">
@@ -127,7 +127,7 @@
             </div>
 
             <h2 class="titolo_due" v-if="categoriaSelezionata == 'mialista'">Film:</h2>
-            <div class="container" v-if="categoriaSelezionata == 'mialista'">
+            <div class="container list" v-if="categoriaSelezionata == 'mialista'">
 
                 <div v-if="miaListaFilm.length == 0">Nessun risultato!</div>
                 <div class="card" v-for="(elem, index) in miaListaFilm" :class="'locan' + index" @mouseover="hoverDue(index)" @mouseleave="bhoverDue(index)">

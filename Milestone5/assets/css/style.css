@@ -12,6 +12,7 @@
   padding-left: 30px;
   padding-right: 30px;
   font-family: "Open Sans", sans-serif;
+  padding-bottom: 50px;
 }
 
 header {
@@ -94,6 +95,11 @@ header > span:nth-child(2) > div {
   justify-content: center;
 }
 
+/* .container.list {
+  flex-wrap: nowrap;
+  overflow-y: auto;
+} */
+
 .fas.fa-plus,
 .fas.fa-check,
 .fas.fa-minus {
@@ -126,6 +132,7 @@ input {
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 /* Track */
