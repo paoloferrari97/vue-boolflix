@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolflix</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="app">
+
+        <!-- header -->
+        <header>
+
+            <span>
+                <img src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" alt="Logo di Netflix">
+            </span>
+
+            <span>
+                <div @click="categoriaSelezionata = 'serietv'">Serie TV<hr v-if="categoriaSelezionata == 'serietv'"></div>
+                <div @click="categoriaSelezionata = 'film'">Film<hr v-if="categoriaSelezionata == 'film'"></div>
+                <div @click="categoriaSelezionata = 'mialista'">La mia lista<hr v-if="categoriaSelezionata == 'mialista'"></div>
+            </span>
+            
+            <span>
+                <input type="text" v-model="input" placeholder="Cerca un film o una serie TV!" @keyup="cerca()">
+                <!-- <button @click="cerca()">Cerca</button> -->
+                <!-- <span>Bambini</span>
+                <i class="fas fa-caret-down"></i> -->
+            </span>
+
+        </header>
+        <!-- /header -->
+
+        <!-- main -->
+        <main>
+
+            <div class="container" v-if="categoriaSelezionata == 'film'">
+                <div v-if="cercato && movies.length == 0">Nessun risultato!</div>
+                <div class="card" v-for="(movie, index) in movies" :class="'loc' + index" @mouseover="hover(index)" @mouseleave="bhover(index)">
+                    <i v-if="!miaListaFilm.includes(movie)" class="fas fa-plus" @click="aggiungiListaMovie(index)"></i>
+                    <i v-if="miaListaFilm.includes(movie)" class="fas fa-check"></i>
+                    <img v-if="movie.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + movie.poster_path">
+                    <img v-else src="https://images.unsplash.com/photo-1534411006708-6ec04172b80d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80">
+                    <div class="layover"></div>
+                    <div class="scritte">
+                        <span><span style="font-weight: 800;">Titolo:</span> {{movie.title}}</span>
+                        <span v-if="movie.title != movie.original_title"><span style="font-weight: 800;">Titolo originale:</span> {{movie.original_title}}</span>
+                        <span><span style="font-weight: 800;">Lingua originale:</span> <img v-if="movie.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + movie.original_language + '-100'" :alt="movie.original_language"></span>
+                        <!-- {{movie.original_language}} -->
+                        <!-- {{movie.vote_average}} -->
+                        <span>
+                            <span style="font-weight: 800;">Voto:</span> 
+                            <i v-for="i in movie.vote_average" class="fas fa-star"></i>
+                            <i v-for="i in (5 - movie.vote_average)" class="far fa-star"></i>
+                        </span>
+                        <span v-if="movie.overview != null && movie.overview != ''">
+                            <span style="font-weight: 800;">Overview:</span> {{movie.overview}}
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="container" v-if="categoriaSelezionata == 'serietv'">
+                <div v-if="cercato && serieTVs.length == 0">Nessun risultato!</div>
+                <div class="card" v-for="(serieTV, index) in serieTVs" :class="'loc' + index" @mouseover="hover(index)" @mouseleave="bhover(index)">
+                    <i v-if="!miaLista.includes(serieTV)" class="fas fa-plus" @click="aggiungiLista(index)"></i>
+                    <i v-if="miaLista.includes(serieTV)" class="fas fa-check"></i>
+                    <img v-if="serieTV.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + serieTV.poster_path">
+                    <img v-else src="https://images.unsplash.com/photo-1534411006708-6ec04172b80d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80">
+                    <div class="layover"></div>
+                    <div class="scritte">
+                        <span><span style="font-weight: 800;">Titolo:</span> {{serieTV.name}}</span>
+                        <span v-if="serieTV.name != serieTV.original_name"><span style="font-weight: 800;">Titolo originale:</span> {{serieTV.original_name}}</span>
+                        <span><span style="font-weight: 800;">Lingua originale:</span> <img v-if="serieTV.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + serieTV.original_language + '-100'" :alt="serieTV.original_language"></span>
+                        <!-- {{serieTV.original_language}} -->
+                        <!-- {{serieTV.vote_average}} -->
+                        <span>
+                            <span style="font-weight: 800;">Voto:</span> 
+                            <i v-for="i in serieTV.vote_average" class="fas fa-star"></i>
+                            <i v-for="i in (5 - serieTV.vote_average)" class="far fa-star"></i>
+                        </span>
+                        <span v-if="serieTV.overview != null && serieTV.overview != ''">
+                            <span style="font-weight: 800;">Overview:</span> {{serieTV.overview}}
+                        </span>
+                    </div>
+                    
+
+                </div>
+
+            </div>
+
+            <h2 v-if="categoriaSelezionata == 'mialista'">Serie TV:</h2>
+            <div class="container" v-if="categoriaSelezionata == 'mialista'">
+
+                <div v-if="miaLista.length == 0">Nessun risultato!</div>
+                <div class="card" v-for="(elem, index) in miaLista" :class="'loc' + index" @mouseover="hover(index)" @mouseleave="bhover(index)">
+                    <i class="fas fa-minus" @click="rimuoviLista(index)"></i>
+                    <img v-if="elem.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + elem.poster_path">
+                    <img v-else src="https://images.unsplash.com/photo-1534411006708-6ec04172b80d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80">
+                    <div class="layover"></div>
+                    <div class="scritte">
+                        <span><span style="font-weight: 800;">Titolo:</span> {{elem.name}}</span>
+                        <span v-if="elem.name != elem.original_name"><span style="font-weight: 800;">Titolo originale:</span> {{elem.original_name}}</span>
+                        <span><span style="font-weight: 800;">Lingua originale:</span> <img v-if="elem.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + elem.original_language + '-100'" :alt="elem.original_language"></span>
+                        <!-- {{elem.original_language}} -->
+                        <!-- {{elem.vote_average}} -->
+                        <span>
+                            <span style="font-weight: 800;">Voto:</span> 
+                            <i v-for="i in elem.vote_average" class="fas fa-star"></i>
+                            <i v-for="i in (5 - elem.vote_average)" class="far fa-star"></i>
+                        </span>
+                        <span v-if="elem.overview != null && elem.overview != ''">
+                            <span style="font-weight: 800;">Overview:</span> {{elem.overview}}
+                        </span>
+                    </div>
+                    
+
+                </div>
+            </div>
+
+            <h2 class="titolo_due" v-if="categoriaSelezionata == 'mialista'">Film:</h2>
+            <div class="container" v-if="categoriaSelezionata == 'mialista'">
+
+                <div v-if="miaListaFilm.length == 0">Nessun risultato!</div>
+                <div class="card" v-for="(elem, index) in miaListaFilm" :class="'locan' + index" @mouseover="hoverDue(index)" @mouseleave="bhoverDue(index)">
+                    <i class="fas fa-minus" @click="rimuoviListaMovie(index)"></i>
+                    <img v-if="elem.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + elem.poster_path">
+                    <img v-else src="https://images.unsplash.com/photo-1534411006708-6ec04172b80d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80">
+                    <div class="layover"></div>
+                    <div class="scritte">
+                        <span><span style="font-weight: 800;">Titolo:</span> {{elem.title}}</span>
+                        <span v-if="elem.title != elem.original_title"><span style="font-weight: 800;">Titolo originale:</span> {{elem.original_title}}</span>
+                        <span><span style="font-weight: 800;">Lingua originale:</span> <img v-if="elem.original_language != ''" :src="'https://www.unknown.nu/flags/images/' + elem.original_language + '-100'" :alt="elem.original_language"></span>
+                        <!-- {{elem.original_language}} -->
+                        <!-- {{elem.vote_average}} -->
+                        <span>
+                            <span style="font-weight: 800;">Voto:</span> 
+                            <i v-for="i in elem.vote_average" class="fas fa-star"></i>
+                            <i v-for="i in (5 - elem.vote_average)" class="far fa-star"></i>
+                        </span>
+                        <span v-if="elem.overview != null && elem.overview != ''">
+                            <span style="font-weight: 800;">Overview:</span> {{elem.overview}}
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+        <!-- /main -->
+
+    </div>
+
+    <!-- VueJS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Mio JS -->
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
