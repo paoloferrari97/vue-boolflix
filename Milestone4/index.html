@@ -26,8 +26,8 @@
             </span>
             
             <span>
-                <input type="text" v-model="input" placeholder="Cerca un film o una serie TV!">
-                <button @click="cerca()">Cerca</button>
+                <input type="text" v-model="input" placeholder="Cerca un film o una serie TV!" @keyup="cerca()">
+                <!-- <button @click="cerca()">Cerca</button> -->
                 <!-- <span>Bambini</span>
                 <i class="fas fa-caret-down"></i> -->
             </span>
@@ -43,6 +43,7 @@
                 <div class="card" v-for="(movie, index) in movies" :class="'loc' + index" @mouseover="hover(index)" @mouseleave="bhover(index)">
 
                     <img v-if="movie.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + movie.poster_path">
+                    <img v-else src="https://images.unsplash.com/photo-1534411006708-6ec04172b80d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80">
                     <div class="layover"></div>
                     <div class="scritte">
                         <span><span style="font-weight: 800;">Titolo:</span> {{movie.title}}</span>
@@ -55,7 +56,7 @@
                             <i v-for="i in movie.vote_average" class="fas fa-star"></i>
                             <i v-for="i in (5 - movie.vote_average)" class="far fa-star"></i>
                         </span>
-                        <span>
+                        <span v-if="movie.overview != null && movie.overview != ''">
                             <span style="font-weight: 800;">Overview:</span> {{movie.overview}}
                         </span>
                     </div>
@@ -69,6 +70,7 @@
                 <div class="card" v-for="(serieTV, index) in serieTVs" :class="'loc' + index" @mouseover="hover(index)" @mouseleave="bhover(index)">
 
                     <img v-if="serieTV.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + serieTV.poster_path">
+                    <img v-else src="https://images.unsplash.com/photo-1534411006708-6ec04172b80d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80">
                     <div class="layover"></div>
                     <div class="scritte">
                         <span><span style="font-weight: 800;">Titolo:</span> {{serieTV.name}}</span>
@@ -81,7 +83,7 @@
                             <i v-for="i in serieTV.vote_average" class="fas fa-star"></i>
                             <i v-for="i in (5 - serieTV.vote_average)" class="far fa-star"></i>
                         </span>
-                        <span>
+                        <span v-if="serieTV.overview != null && serieTV.overview != ''">
                             <span style="font-weight: 800;">Overview:</span> {{serieTV.overview}}
                         </span>
                     </div>
@@ -98,6 +100,7 @@
                 <div class="card" v-for="(elem, index) in miaLista" :class="'loc' + index" @mouseover="hover(index)" @mouseleave="bhover(index)">
 
                     <img v-if="elem.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + elem.poster_path">
+                    <img v-else src="https://images.unsplash.com/photo-1534411006708-6ec04172b80d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80">
                     <div class="layover"></div>
                     <div class="scritte">
                         <span><span style="font-weight: 800;">Titolo:</span> {{elem.name}}</span>
@@ -110,7 +113,7 @@
                             <i v-for="i in elem.vote_average" class="fas fa-star"></i>
                             <i v-for="i in (5 - elem.vote_average)" class="far fa-star"></i>
                         </span>
-                        <span>
+                        <span v-if="elem.overview != null && elem.overview != ''">
                             <span style="font-weight: 800;">Overview:</span> {{elem.overview}}
                         </span>
                     </div>
@@ -125,6 +128,7 @@
                 <div class="card" v-for="(elem, index) in miaListaFilm" :class="'loc' + index" @mouseover="hover(index)" @mouseleave="bhover(index)">
 
                     <img v-if="elem.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + elem.poster_path">
+                    <img v-else src="https://images.unsplash.com/photo-1534411006708-6ec04172b80d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80">
                     <div class="layover"></div>
                     <div class="scritte">
                         <span><span style="font-weight: 800;">Titolo:</span> {{elem.title}}</span>
@@ -137,7 +141,7 @@
                             <i v-for="i in elem.vote_average" class="fas fa-star"></i>
                             <i v-for="i in (5 - elem.vote_average)" class="far fa-star"></i>
                         </span>
-                        <span>
+                        <span v-if="elem.overview != null && elem.overview != ''">
                             <span style="font-weight: 800;">Overview:</span> {{elem.overview}}
                         </span>
                     </div>
