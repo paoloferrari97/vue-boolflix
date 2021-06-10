@@ -1,8 +1,8 @@
 const app = new Vue({
     el: "#app",
     data: {
-        url: "",
         input: "",
+        url: "",
         movies: [],
         urlSerieTV: "",
         serieTVs: [],
@@ -59,6 +59,26 @@ const app = new Vue({
         bhover(indice) {
             document.querySelector(`.loc${indice} > .scritte`).style.zIndex = "1";
             document.querySelector(`.loc${indice} > img`).style.zIndex = "3";
+        },        
+        hoverDue(indice) {
+            document.querySelector(`.locan${indice} > .scritte`).style.zIndex = "3";
+            document.querySelector(`.locan${indice} > img`).style.zIndex = "1";
+        },
+        bhoverDue(indice) {
+            document.querySelector(`.locan${indice} > .scritte`).style.zIndex = "1";
+            document.querySelector(`.locan${indice} > img`).style.zIndex = "3";
+        },
+        aggiungiLista(indice) {
+            this.miaLista.push(this.serieTVs[indice]);
+        },
+        aggiungiListaMovie(indice) {
+            this.miaListaFilm.push(this.movies[indice]);
+        },
+        rimuoviLista(indice) {
+            this.miaLista.splice(indice, 1);
+        },
+        rimuoviListaMovie(indice) {
+            this.miaListaFilm.splice(indice, 1);
         }
     },
     mounted() {

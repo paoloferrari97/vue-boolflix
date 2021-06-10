@@ -73,7 +73,8 @@ header > span:nth-child(2) > div {
   padding-top: 20px;
   padding-bottom: 20px;
   max-height: 355px;
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow-y: auto;
   z-index: 1;
 }
 
@@ -89,4 +90,15 @@ header > span:nth-child(2) > div {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.fas.fa-plus,
+.fas.fa-check,
+.fas.fa-minus {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: red;
+  z-index: 4;
+  font-size: 20px;
 }
