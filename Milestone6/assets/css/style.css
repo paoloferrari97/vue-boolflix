@@ -45,6 +45,8 @@ header > span:nth-child(2) > div {
   height: 375px;
   position: relative;
   margin: 10px 5px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px red;
 }
 
 .card > img {
@@ -52,6 +54,7 @@ header > span:nth-child(2) > div {
   height: 375px;
   position: relative;
   z-index: 3;
+  border-radius: 10px;
 }
 
 .layover {
@@ -62,6 +65,7 @@ header > span:nth-child(2) > div {
   top: 0;
   left: 0;
   z-index: 2;
+  border-radius: 10px;
 }
 
 .scritte {
